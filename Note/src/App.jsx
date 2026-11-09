@@ -4,6 +4,7 @@ const App = () => {
 
   const handler = (e) =>{
     e.preventDefault()
+    console.log('Submitted')
   }
 
   return (
