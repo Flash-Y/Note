@@ -10,7 +10,11 @@ const App = () => {
     e.preventDefault()
     let holdTask = [...task];
 
-    console.log(task);
+    holdTask.push({heading,Detail});
+    setTask(holdTask);
+
+    console.log(holdTask);
+    
     
 
     setH('')
@@ -35,16 +39,21 @@ const App = () => {
 
         }}  />
 
-        <button className='bg-white active:bg-amber-600 text-black px-5 font-medium outline-none w-full py-2 rounded'>Add Note</button>
+        <button className='bg-white active:scale-105 active:bg-amber-600 text-black px-5 font-medium outline-none w-full py-2 rounded'>Add Note</button>
 
       </form>
 
       <div className='lg:w-1/2 bg-gray-900 lg:border-l-2 p-10'>
         <h1 className='text-3xl font-bold'>Your Recent notes</h1>
-        <div className='flex gap-3 flex-wrap mt-3 overflow-auto h-full' >
-          <div className='h-52 w-40 rounded-2xl bg-white'></div>
-          <div className='h-52 w-40 rounded-2xl bg-white'></div>
-          <div className='h-52 w-40 rounded-2xl bg-white'></div>
+        <div className='flex gap-3 flex-wrap mt-3 overflow-y-auto max-h-[80vh]'>
+          
+          {task.map(function(num,idx){
+            return <div key={idx} className='min-h-52 text-black p-4 w-40 rounded-2xl bg-white wrap-break-word overflow-y-auto'>
+              <h3 className='leading-tight text-xs text-red-400'>{num.heading}</h3>
+              <hr className='my-2 border-gray-400' />
+              <h3 className='leading-tight text-xs mt-1.5'>{num.Detail}</h3>
+            </div>
+          })}
         </div>
       </div>
     </div>
