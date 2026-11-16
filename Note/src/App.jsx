@@ -3,12 +3,18 @@ import React, { useState } from "react"
 const App = () => { 
 
   const[heading,setH] = useState('')
+  const[Detail,setD] =useState('')
+  const[task, setTask] = useState([])
 
   const handler = (e) =>{
     e.preventDefault()
-    console.log(heading)
+    let holdTask = [...task];
+
+    console.log(task);
+    
 
     setH('')
+    setD('')
   }
 
   return (
@@ -18,13 +24,18 @@ const App = () => {
 
         <h1 className='text-3xl font-bold'>Add notes</h1>
 
+      {/* Head area */}
         <input type="text" placeholder='Enter Notes Headings' className='px-5 font-medium outline-none w-full py-2 border-2 rounded' value={heading} onChange={(c)=>{
              setH(c.target.value);
         }} />
 
-        <textarea placeholder='Enter Details' className='px-5 w-full font-medium h-32 flex items-start flex-row outline-none py-2 border-2 rounded'/>
+        {/* Detail area */}
+        <textarea placeholder='Enter Details' className='px-5 w-full font-medium h-32 flex items-start flex-row outline-none py-2 border-2 rounded' value={Detail} onChange={(d)=>{
+          setD(d.target.value);
 
-        <button className='bg-white text-black px-5 font-medium outline-none w-full py-2 rounded'>Add Note</button>
+        }}  />
+
+        <button className='bg-white active:bg-amber-600 text-black px-5 font-medium outline-none w-full py-2 rounded'>Add Note</button>
 
       </form>
 
