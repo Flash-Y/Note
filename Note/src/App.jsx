@@ -1,17 +1,26 @@
-import React from "react"
+import React, { useState } from "react"
 
-const App = () => {
+const App = () => { 
+
+  const[heading,setH] = useState('')
 
   const handler = (e) =>{
     e.preventDefault()
-    console.log('Submitted')
+    console.log(heading)
+
+    setH('')
   }
 
   return (
     <div className='h-screen lg:flex bg-black text-white'>
+
       <form onSubmit={handler} className='flex lg:w-1/2 gap-4 flex-col items-start p-10'>
+
         <h1 className='text-3xl font-bold'>Add notes</h1>
-        <input type="text" placeholder='Enter Notes Headings' className='px-5 font-medium outline-none w-full py-2 border-2 rounded' />
+
+        <input type="text" placeholder='Enter Notes Headings' className='px-5 font-medium outline-none w-full py-2 border-2 rounded' value={heading} onChange={(c)=>{
+             setH(c.target.value);
+        }} />
 
         <textarea placeholder='Enter Details' className='px-5 w-full font-medium h-32 flex items-start flex-row outline-none py-2 border-2 rounded'/>
 
