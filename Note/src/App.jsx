@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import { X } from 'lucide-react';
+
 
 const App = () => { 
 
@@ -19,6 +21,15 @@ const App = () => {
 
     setH('')
     setD('')
+  }
+
+  const deleteNote = (idx)=>{
+    const copyTask = [...task]
+
+    copyTask.splice(idx,1);
+
+    setTask (copyTask);
+
   }
 
   return (
@@ -49,15 +60,27 @@ const App = () => {
           
           {task.map(function(num,idx){
 
-            return <div key={idx} className='min-h-52 text-black bg-cover p-4 w-40 rounded-2xl wrap-break-word overflow-y-auto '
+            return <div key={idx} className='relative min-h-52 text-black bg-cover p-4 w-40 rounded-2xl wrap-break-word overflow-y-auto '
 
             style={{ backgroundImage: "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F037%2F152%2F677%2Fnon_2x%2Fsticky-note-paper-background-free-png.png&f=1&nofb=1&ipt=e8f1e32358bb4eb3424e1debfe9c61d90b1b274eabba4b7bc09c90016e058ccf&ipo=images')" }}>
 
-              <h3 className='leading-tight text-xs text-red-400 p-2'>{num.heading}</h3>
+            <h2 className="group absolute top-5 right-3 p-0.5 rounded-full cursor-pointer active:scale-95">
+
+              <X size={16} color="#d30909" strokeWidth={3} onClick={()=>{
+                deleteNote(idx);
+              }}/>
+
+                <span className="hidden group-hover:block absolute top-full right-0 bg-gray-200 text-white-60 text-[10px] px-2 py-1 rounded whitespace-nowrap z-10">
+                  Delete note
+                </span>
+
+            </h2>
+
+              <h3 className='leading-tight text-x font-bold py-2'>{num.heading}</h3>
 
               <hr className='my-2 border-gray-400' />
 
-              <h3 className='leading-tight text-xs mt-1.5'>{num.Detail}</h3>
+              <h3 className='leading-tight text-xs mt-1.5 px-1'>{num.Detail}</h3>
             </div>
           })}
         </div>
